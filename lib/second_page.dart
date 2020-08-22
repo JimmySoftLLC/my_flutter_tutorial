@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_flutter_tutorial/home_page.dart';
+import 'package:my_flutter_tutorial/context_example.dart';
 import 'package:flutter/cupertino.dart';
 
 class MySecondPage extends StatefulWidget {
@@ -42,6 +43,17 @@ class _MySecondPageState extends State<MySecondPage> {
                       style: TextStyle(fontSize: 10.0),
                     ),onPressed: (){
                   Navigator.pushNamedAndRemoveUntil(context, MyHomePage.id,(Route<dynamic> route) => false);
+                }),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: FlatButton(
+                    color: Colors.blue,
+                    child: Text(
+                      "updateSomeData then home",
+                      style: TextStyle(fontSize: 10.0),
+                    ),onPressed: (){
+                  updateSomeData(null, context);
                 }),
               ),
             ],

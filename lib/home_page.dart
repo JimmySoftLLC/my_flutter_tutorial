@@ -29,14 +29,17 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            FlatButton(
-            color: Colors.orange,
-            child: Text(
-              "Second page",
-              style: TextStyle(fontSize: 10.0),
-            ),onPressed: (){
-            Navigator.pushNamedAndRemoveUntil(context, MySecondPage.id,(Route<dynamic> route) => false);
-            }),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FlatButton(
+              color: Colors.orange,
+              child: Text(
+                "Second page",
+                style: TextStyle(fontSize: 10.0),
+              ),onPressed: (){
+              Navigator.pushNamedAndRemoveUntil(context, MySecondPage.id,(Route<dynamic> route) => false);
+              }),
+            ),
           ],
         ),
       ),

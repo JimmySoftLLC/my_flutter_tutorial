@@ -33,14 +33,17 @@ class _MySecondPageState extends State<MySecondPage> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              FlatButton(
-                  color: Colors.blue,
-                  child: Text(
-                    "Home",
-                    style: TextStyle(fontSize: 10.0),
-                  ),onPressed: (){
-                Navigator.pushNamedAndRemoveUntil(context, MyHomePage.id,(Route<dynamic> route) => false);
-              }),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: FlatButton(
+                    color: Colors.blue,
+                    child: Text(
+                      "Home",
+                      style: TextStyle(fontSize: 10.0),
+                    ),onPressed: (){
+                  Navigator.pushNamedAndRemoveUntil(context, MyHomePage.id,(Route<dynamic> route) => false);
+                }),
+              ),
             ],
           ),
         ),

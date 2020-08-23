@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_flutter_tutorial/developer.dart';
-import 'package:my_flutter_tutorial/home_page.dart';
+import 'package:my_flutter_tutorial/model/developer.dart';
+import 'package:my_flutter_tutorial/view/home_page.dart';
 
 void deleteWarningPopup(String itemType, int index, context) {
   showDialog(
@@ -12,13 +12,13 @@ void deleteWarningPopup(String itemType, int index, context) {
         content: myRichText(itemType, myDevelopers[index].firstName + ' ' + myDevelopers[index].lastName),
         actions: <Widget>[
           FlatButton(
-            child: const Text('CANCEL'),
+            child: const Text('CANCEL', style: TextStyle(color: Colors.orange)),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
           FlatButton(
-            child: const Text('DELETE'),
+            child: const Text('DELETE', style: TextStyle(color: Colors.orange)),
             onPressed: () {
                     myDevelopers.removeAt(index);
                     Route _createRoute() {
@@ -29,7 +29,7 @@ void deleteWarningPopup(String itemType, int index, context) {
                         },
                       );
                     }
-                    Navigator.of(context).pushAndRemoveUntil(_createRoute(),(Route<dynamic> PageRouteBuilder) => false);
+                    Navigator.of(context).pushAndRemoveUntil(_createRoute(),(Route<dynamic> pageRouteBuilder) => false);
                   },
           )
         ],

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_flutter_tutorial/home_page.dart';
-import 'package:my_flutter_tutorial/second_page.dart';
-import 'package:my_flutter_tutorial/register_page.dart';
-import 'package:my_flutter_tutorial/edit_developer.dart';
+import 'package:my_flutter_tutorial/view/home_page.dart';
+import 'package:my_flutter_tutorial/view/second_page.dart';
+import 'package:my_flutter_tutorial/view/register_page.dart';
+import 'package:my_flutter_tutorial/view/edit_developer.dart';
 
 void main() => runApp(MyApp());
 

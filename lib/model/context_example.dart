@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_flutter_tutorial/home_page.dart';
-import 'package:my_flutter_tutorial/developer.dart';
+import 'package:my_flutter_tutorial/view/home_page.dart';
+import 'package:my_flutter_tutorial/model/developer.dart';
 import 'dart:math';
 
 void updateSomeData( context) async {
@@ -21,7 +21,7 @@ void updateSomeData( context) async {
       },
     );
   }
-  Navigator.of(context).pushAndRemoveUntil(_createRoute(),(Route<dynamic> PageRouteBuilder) => false);
+  Navigator.of(context).pushAndRemoveUntil(_createRoute(),(Route<dynamic> pageRouteBuilder) => false);
 }
 
 void deleteAllDevelopers( context) async {
@@ -35,7 +35,7 @@ void deleteAllDevelopers( context) async {
       },
     );
   }
-  Navigator.of(context).pushAndRemoveUntil(_createRoute(),(Route<dynamic> PageRouteBuilder) => false);
+  Navigator.of(context).pushAndRemoveUntil(_createRoute(),(Route<dynamic> pageRouteBuilder) => false);
 }
 
 String returnRandomString(myStrings){

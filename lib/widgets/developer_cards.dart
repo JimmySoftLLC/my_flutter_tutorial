@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:my_flutter_tutorial/developer.dart';
-import 'package:my_flutter_tutorial/home_page.dart';
+import 'package:my_flutter_tutorial/model/developer.dart';
+import 'package:my_flutter_tutorial/view/home_page.dart';
 
-const double developerCardHeight = 180;
+const double developerCardHeight = 150;
 
 List<DeveloperCard> updateDeveloperCards() {
   List<Widget> developerCards = <DeveloperCard>[];
-  debugPrint('update cards');
   for (int i = 0; i < myDevelopers.length; i++) {
       developerCards.add(new DeveloperCard(
         email: myDevelopers[i].email,
@@ -36,8 +35,6 @@ class DeveloperCard extends StatefulWidget {
 }
 
 class _DeveloperCardState extends State<DeveloperCard> {
-  String _email;
-  String _password;
   String _firstName;
   String _lastName;
   String _bio;
@@ -46,8 +43,6 @@ class _DeveloperCardState extends State<DeveloperCard> {
   @override
   void initState() {
     super.initState();
-    _email = widget.email;
-    _password = widget.password;
     _firstName = widget.firstName;
     _lastName = widget.lastName;
     _bio = widget.bio;
@@ -127,7 +122,7 @@ class _DeveloperCardState extends State<DeveloperCard> {
 
 editDeveloperPressed(index, context) {
   myLastSelectedDeveloper=index;
-  MyHomePage.of(context).editUserStoryInContext();
+  MyHomePage.of(context).editDeveloperInContext();
 }
 
 deleteDeveloperPressed(index, context) {

@@ -1,47 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:my_flutter_tutorial/home_page.dart';
+import 'package:my_flutter_tutorial/view/home_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:my_flutter_tutorial/developer.dart';
+import 'package:my_flutter_tutorial/model/developer.dart';
 
-class MyRegisterPage extends StatefulWidget {
-  static const String id ='/MyRegisterPage';
+class MyEditDeveloperPage extends StatefulWidget {
+  static const String id ='/MyEditDeveloperPage';
   @override
-  _MyRegisterPageState createState() => _MyRegisterPageState();
+  _MyEditDeveloperPageState createState() => _MyEditDeveloperPageState();
 }
 
-class _MyRegisterPageState extends State<MyRegisterPage> {
+class _MyEditDeveloperPageState extends State<MyEditDeveloperPage> {
   String myText = '';
-  String email = '';
-  String password = '';
-  String firstName = '';
-  String lastName = '';
-  String bio = '';
-
   void validateEntries() {
-    if (password == '' ) {
+    if (myDevelopers[myLastSelectedDeveloper].email == '' && myDevelopers[myLastSelectedDeveloper].password == '' ) {
       setState(() {
         myText = 'No entries please enter email and password.';
       });
     }else{
       setState(() {
-        myText = 'Registering user please wait.';
+        myText = 'Saving user please wait.';
+        Route _createRoute() {
+          return PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) => MyHomePage(),
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              return FadeTransition(opacity: animation, child: child);
+            },
+          );
+        }
+        Navigator.of(context).pushAndRemoveUntil(_createRoute(),(Route<dynamic> pageRouteBuilder) => false);
       });
-      Developer myDeveloper;
-      int index;
-      index = myDevelopers.length-1;
-      myDeveloper = new Developer(email, password, firstName, lastName, bio,index);
-      myDevelopers.add(myDeveloper);
-      Navigator.pushReplacementNamed(context, MyHomePage.id);
-    }
-  }
+        }
+}
 
-  @override
-  Widget build(BuildContext context) {
-    double myRadius = 10;
-    return Scaffold(
+@override
+Widget build(BuildContext context) {
+  double myRadius = 10;
+  Color mainColor = Colors.orange;
+  Color accentColor = Colors.orangeAccent;
+  return Scaffold(
       appBar: AppBar(
-        title: Text('Register New User',style: TextStyle(fontSize: 17,)),
-        backgroundColor: Colors.blue,
+        title: Text('Edit User',style: TextStyle(fontSize: 17,)),
+        backgroundColor: mainColor,
         actions: <Widget>[
           // overflow menu
         ],
@@ -62,7 +61,7 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                   },
                 );
               }
-              Navigator.of(context).pushAndRemoveUntil(_createRoute(),(Route<dynamic> PageRouteBuilder) => false);
+              Navigator.of(context).pushAndRemoveUntil(_createRoute(),(Route<dynamic> pageRouteBuilder) => false);
             },
             ),
           ],
@@ -80,9 +79,9 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                 height: 24.0,
               ),
               TextField(
-                //controller: TextEditingController()..text = '',
+                controller: TextEditingController()..text = myDevelopers[myLastSelectedDeveloper].email,
                 onChanged: (value) {
-                  email = value;
+                  myDevelopers[myLastSelectedDeveloper].email = value;
                 },
                 decoration: InputDecoration(
                   hintText: 'email',
@@ -93,12 +92,12 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                    BorderSide(color: accentColor, width: 1.0),
                     borderRadius: BorderRadius.all(Radius.circular(myRadius)),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                    BorderSide(color: accentColor, width: 2.0),
                     borderRadius: BorderRadius.all(Radius.circular(myRadius)),
                   ),
                 ),
@@ -107,10 +106,11 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                 height: 8.0,
               ),
               TextField(
-                //controller: TextEditingController()..text = '',
+                controller: TextEditingController()..text = myDevelopers[myLastSelectedDeveloper].password,
                 onChanged: (value) {
-                  password = value;
+                  myDevelopers[myLastSelectedDeveloper].password = value;
                 },
+                obscureText: true,
                 decoration: InputDecoration(
                   hintText: 'password',
                   contentPadding:
@@ -120,12 +120,12 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                    BorderSide(color: accentColor, width: 1.0),
                     borderRadius: BorderRadius.all(Radius.circular(myRadius)),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                    BorderSide(color: accentColor, width: 2.0),
                     borderRadius: BorderRadius.all(Radius.circular(myRadius)),
                   ),
                 ),
@@ -139,9 +139,9 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                   Expanded(
                     flex: 20,
                     child: TextField(
-                      //controller: TextEditingController()..text = 'flutter@anywhere.com',
+                      controller: TextEditingController()..text = myDevelopers[myLastSelectedDeveloper].firstName,
                       onChanged: (value) {
-                        firstName = value;
+                        myDevelopers[myLastSelectedDeveloper].firstName = value;
                       },
                       decoration: InputDecoration(
                         hintText: 'first name',
@@ -152,12 +152,12 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide:
-                          BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                          BorderSide(color: accentColor, width: 1.0),
                           borderRadius: BorderRadius.all(Radius.circular(myRadius)),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide:
-                          BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                          BorderSide(color: accentColor, width: 2.0),
                           borderRadius: BorderRadius.all(Radius.circular(myRadius)),
                         ),
                       ),
@@ -172,9 +172,9 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                   Expanded(
                     flex: 20,
                     child: TextField(
-                      //controller: TextEditingController()..text = 'flutter@anywhere.com',
+                      controller: TextEditingController()..text = myDevelopers[myLastSelectedDeveloper].lastName,
                       onChanged: (value) {
-                        lastName = value;
+                        myDevelopers[myLastSelectedDeveloper].lastName = value;
                       },
                       decoration: InputDecoration(
                         hintText: 'last name',
@@ -185,12 +185,12 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide:
-                          BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                          BorderSide(color: accentColor, width: 1.0),
                           borderRadius: BorderRadius.all(Radius.circular(myRadius)),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide:
-                          BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                          BorderSide(color: accentColor, width: 2.0),
                           borderRadius: BorderRadius.all(Radius.circular(myRadius)),
                         ),
                       ),
@@ -202,10 +202,10 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                 height: 24.0,
               ),
               TextField(
-                maxLines: 4,
-                //controller: TextEditingController()..text = '',
+                maxLines: 6,
+                controller: TextEditingController()..text = myDevelopers[myLastSelectedDeveloper].bio,
                 onChanged: (value) {
-                  bio = value;
+                  myDevelopers[myLastSelectedDeveloper].bio = value;
                 },
                 decoration: InputDecoration(
                   hintText: 'Tell us about yourself',
@@ -216,12 +216,12 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                    BorderSide(color: accentColor, width: 1.0),
                     borderRadius: BorderRadius.all(Radius.circular(myRadius)),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                    BorderSide(color: accentColor, width: 2.0),
                     borderRadius: BorderRadius.all(Radius.circular(myRadius)),
                   ),
                 ),
@@ -232,7 +232,7 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 16.0),
                 child: Material(
-                  color: Colors.lightBlueAccent,
+                  color: accentColor,
                   borderRadius: BorderRadius.all(Radius.circular(myRadius)),
                   elevation: 5.0,
                   child: MaterialButton(
@@ -242,7 +242,7 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                     minWidth: 200.0,
                     height: 42.0,
                     child: Text(
-                      'Register',
+                      'Save changes',
                     ),
                   ),
                 ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_flutter_tutorial/second_page.dart';
-import 'package:my_flutter_tutorial/register_page.dart';
-import 'package:my_flutter_tutorial/developer_cards.dart';
-import 'package:my_flutter_tutorial/messages.dart';
-import 'package:my_flutter_tutorial/edit_developer.dart';
+import 'package:my_flutter_tutorial/view/second_page.dart';
+import 'package:my_flutter_tutorial/view/register_page.dart';
+import 'package:my_flutter_tutorial/widgets/developer_cards.dart';
+import 'package:my_flutter_tutorial/view/messages.dart';
+import 'package:my_flutter_tutorial/view/edit_developer.dart';
 
 class MyHomePage extends StatefulWidget {
   static const String id ='/MyHomePage';
@@ -25,7 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
     deleteWarningPopup( itemType,  index, context);
   }
 
-  void editUserStoryInContext() {
+  void editDeveloperInContext() {
     Navigator.pushReplacementNamed(context, MyEditDeveloperPage.id);
   }
 
@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                 );
               }
-              Navigator.of(context).pushAndRemoveUntil(_createRoute(),(Route<dynamic> PageRouteBuilder) => false);
+              Navigator.of(context).pushAndRemoveUntil(_createRoute(),(Route<dynamic> pageRouteBuilder) => false);
               }),
             ),
             Padding(
@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                   );
                 }
-                Navigator.of(context).pushAndRemoveUntil(_createRoute(),(Route<dynamic> PageRouteBuilder) => false);
+                Navigator.of(context).pushAndRemoveUntil(_createRoute(),(Route<dynamic> pageRouteBuilder) => false);
               }),
             ),
           ],

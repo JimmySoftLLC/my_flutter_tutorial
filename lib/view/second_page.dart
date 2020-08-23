@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_flutter_tutorial/home_page.dart';
-import 'package:my_flutter_tutorial/context_example.dart';
+import 'package:my_flutter_tutorial/view/home_page.dart';
+import 'package:my_flutter_tutorial/model/context_example.dart';
 import 'package:flutter/cupertino.dart';
 
 class MySecondPage extends StatefulWidget {
@@ -50,7 +50,7 @@ class _MySecondPageState extends State<MySecondPage> {
                       },
                     );
                   }
-                  Navigator.of(context).pushAndRemoveUntil(_createRoute(),(Route<dynamic> PageRouteBuilder) => false);
+                  Navigator.of(context).pushAndRemoveUntil(_createRoute(),(Route<dynamic> pageRouteBuilder) => false);
                 }),
               ),
               Padding(

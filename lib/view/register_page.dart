@@ -1,44 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:my_flutter_tutorial/home_page.dart';
+import 'package:my_flutter_tutorial/view/home_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:my_flutter_tutorial/developer.dart';
+import 'package:my_flutter_tutorial/model/developer.dart';
 
-class MyEditDeveloperPage extends StatefulWidget {
-  static const String id ='/MyEditDeveloperPage';
+class MyRegisterPage extends StatefulWidget {
+  static const String id ='/MyRegisterPage';
   @override
-  _MyEditDeveloperPageState createState() => _MyEditDeveloperPageState();
+  _MyRegisterPageState createState() => _MyRegisterPageState();
 }
 
-class _MyEditDeveloperPageState extends State<MyEditDeveloperPage> {
+class _MyRegisterPageState extends State<MyRegisterPage> {
   String myText = '';
+  String email = '';
+  String password = '';
+  String firstName = '';
+  String lastName = '';
+  String bio = '';
+
   void validateEntries() {
-    if (myDevelopers[myLastSelectedDeveloper].email == '' && myDevelopers[myLastSelectedDeveloper].password == '' ) {
+    if (password == '' ) {
       setState(() {
         myText = 'No entries please enter email and password.';
       });
     }else{
       setState(() {
-        myText = 'Saving user please wait.';
-        Route _createRoute() {
-          return PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) => MyHomePage(),
-            transitionsBuilder: (context, animation, secondaryAnimation, child) {
-              return FadeTransition(opacity: animation, child: child);
-            },
-          );
-        }
-        Navigator.of(context).pushAndRemoveUntil(_createRoute(),(Route<dynamic> PageRouteBuilder) => false);
+        myText = 'Registering user please wait.';
       });
-        }
-}
+      Developer myDeveloper;
+      int index;
+      index = myDevelopers.length-1;
+      myDeveloper = new Developer(email, password, firstName, lastName, bio,index);
+      myDevelopers.add(myDeveloper);
+      Navigator.pushReplacementNamed(context, MyHomePage.id);
+    }
+  }
 
-@override
-Widget build(BuildContext context) {
-  double myRadius = 10;
-  return Scaffold(
+  @override
+  Widget build(BuildContext context) {
+    double myRadius = 10;
+    Color mainColor = Colors.orange;
+    Color accentColor = Colors.orangeAccent;
+    return Scaffold(
       appBar: AppBar(
-        title: Text('Edit User',style: TextStyle(fontSize: 17,)),
-        backgroundColor: Colors.blue,
+        title: Text('Register New User',style: TextStyle(fontSize: 17,)),
+        backgroundColor: mainColor,
         actions: <Widget>[
           // overflow menu
         ],
@@ -59,7 +64,7 @@ Widget build(BuildContext context) {
                   },
                 );
               }
-              Navigator.of(context).pushAndRemoveUntil(_createRoute(),(Route<dynamic> PageRouteBuilder) => false);
+              Navigator.of(context).pushAndRemoveUntil(_createRoute(),(Route<dynamic> pageRouteBuilder) => false);
             },
             ),
           ],
@@ -77,9 +82,9 @@ Widget build(BuildContext context) {
                 height: 24.0,
               ),
               TextField(
-                controller: TextEditingController()..text = myDevelopers[myLastSelectedDeveloper].email,
+                //controller: TextEditingController()..text = '',
                 onChanged: (value) {
-                  myDevelopers[myLastSelectedDeveloper].email = value;
+                  email = value;
                 },
                 decoration: InputDecoration(
                   hintText: 'email',
@@ -90,12 +95,12 @@ Widget build(BuildContext context) {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                    BorderSide(color: accentColor, width: 1.0),
                     borderRadius: BorderRadius.all(Radius.circular(myRadius)),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                    BorderSide(color: accentColor, width: 2.0),
                     borderRadius: BorderRadius.all(Radius.circular(myRadius)),
                   ),
                 ),
@@ -104,10 +109,11 @@ Widget build(BuildContext context) {
                 height: 8.0,
               ),
               TextField(
-                controller: TextEditingController()..text = myDevelopers[myLastSelectedDeveloper].password,
+                //controller: TextEditingController()..text = '',
                 onChanged: (value) {
-                  myDevelopers[myLastSelectedDeveloper].password = value;
+                  password = value;
                 },
+                obscureText: true,
                 decoration: InputDecoration(
                   hintText: 'password',
                   contentPadding:
@@ -117,12 +123,12 @@ Widget build(BuildContext context) {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                    BorderSide(color: accentColor, width: 1.0),
                     borderRadius: BorderRadius.all(Radius.circular(myRadius)),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                    BorderSide(color: accentColor, width: 2.0),
                     borderRadius: BorderRadius.all(Radius.circular(myRadius)),
                   ),
                 ),
@@ -136,9 +142,9 @@ Widget build(BuildContext context) {
                   Expanded(
                     flex: 20,
                     child: TextField(
-                      controller: TextEditingController()..text = myDevelopers[myLastSelectedDeveloper].firstName,
+                      //controller: TextEditingController()..text = 'flutter@anywhere.com',
                       onChanged: (value) {
-                        myDevelopers[myLastSelectedDeveloper].firstName = value;
+                        firstName = value;
                       },
                       decoration: InputDecoration(
                         hintText: 'first name',
@@ -149,12 +155,12 @@ Widget build(BuildContext context) {
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide:
-                          BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                          BorderSide(color: accentColor, width: 1.0),
                           borderRadius: BorderRadius.all(Radius.circular(myRadius)),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide:
-                          BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                          BorderSide(color: accentColor, width: 2.0),
                           borderRadius: BorderRadius.all(Radius.circular(myRadius)),
                         ),
                       ),
@@ -169,9 +175,9 @@ Widget build(BuildContext context) {
                   Expanded(
                     flex: 20,
                     child: TextField(
-                      controller: TextEditingController()..text = myDevelopers[myLastSelectedDeveloper].lastName,
+                      //controller: TextEditingController()..text = 'flutter@anywhere.com',
                       onChanged: (value) {
-                        myDevelopers[myLastSelectedDeveloper].lastName = value;
+                        lastName = value;
                       },
                       decoration: InputDecoration(
                         hintText: 'last name',
@@ -182,12 +188,12 @@ Widget build(BuildContext context) {
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide:
-                          BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                          BorderSide(color: accentColor, width: 1.0),
                           borderRadius: BorderRadius.all(Radius.circular(myRadius)),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide:
-                          BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                          BorderSide(color: accentColor, width: 2.0),
                           borderRadius: BorderRadius.all(Radius.circular(myRadius)),
                         ),
                       ),
@@ -199,10 +205,10 @@ Widget build(BuildContext context) {
                 height: 24.0,
               ),
               TextField(
-                maxLines: 6,
-                controller: TextEditingController()..text = myDevelopers[myLastSelectedDeveloper].bio,
+                maxLines: 4,
+                //controller: TextEditingController()..text = '',
                 onChanged: (value) {
-                  myDevelopers[myLastSelectedDeveloper].bio = value;
+                  bio = value;
                 },
                 decoration: InputDecoration(
                   hintText: 'Tell us about yourself',
@@ -213,12 +219,12 @@ Widget build(BuildContext context) {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                    BorderSide(color: accentColor, width: 1.0),
                     borderRadius: BorderRadius.all(Radius.circular(myRadius)),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide:
-                    BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                    BorderSide(color: accentColor, width: 2.0),
                     borderRadius: BorderRadius.all(Radius.circular(myRadius)),
                   ),
                 ),
@@ -229,7 +235,7 @@ Widget build(BuildContext context) {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 16.0),
                 child: Material(
-                  color: Colors.lightBlueAccent,
+                  color: accentColor,
                   borderRadius: BorderRadius.all(Radius.circular(myRadius)),
                   elevation: 5.0,
                   child: MaterialButton(
@@ -239,7 +245,7 @@ Widget build(BuildContext context) {
                     minWidth: 200.0,
                     height: 42.0,
                     child: Text(
-                      'Save changes',
+                      'Register',
                     ),
                   ),
                 ),

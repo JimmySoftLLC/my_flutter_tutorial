@@ -23,8 +23,8 @@ class _MySecondPageState extends State<MySecondPage> {
     return new MaterialApp(
       home: new Scaffold(
         appBar: AppBar(
-          title: Text('My second page',style: TextStyle(fontSize: 17,)),
-          backgroundColor: Colors.blue,
+          title: Text('Utilities',style: TextStyle(fontSize: 17,)),
+          backgroundColor: Colors.green,
           actions: <Widget>[
             // overflow menu
           ],
@@ -37,23 +37,42 @@ class _MySecondPageState extends State<MySecondPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: FlatButton(
-                    color: Colors.blue,
+                    color: Colors.orange,
                     child: Text(
                       "Home",
                       style: TextStyle(fontSize: 10.0),
                     ),onPressed: (){
-                  Navigator.pushNamedAndRemoveUntil(context, MyHomePage.id,(Route<dynamic> route) => false);
+                  Route _createRoute() {
+                    return PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) => MyHomePage(),
+                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                        return FadeTransition(opacity: animation, child: child);
+                      },
+                    );
+                  }
+                  Navigator.of(context).pushAndRemoveUntil(_createRoute(),(Route<dynamic> PageRouteBuilder) => false);
                 }),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: FlatButton(
-                    color: Colors.blue,
+                    color: Colors.orange,
                     child: Text(
-                      "updateSomeData then home",
+                      "Create random developer",
                       style: TextStyle(fontSize: 10.0),
                     ),onPressed: (){
-                  updateSomeData(null, context);
+                  updateSomeData(context);
+                }),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: FlatButton(
+                    color: Colors.red,
+                    child: Text(
+                      "Delete all",
+                      style: TextStyle(fontSize: 10.0),
+                    ),onPressed: (){
+                  deleteAllDevelopers(context);
                 }),
               ),
             ],

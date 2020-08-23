@@ -1,17 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:my_flutter_tutorial/second_page.dart';
+import 'package:my_flutter_tutorial/register_page.dart';
+import 'package:my_flutter_tutorial/developer_cards.dart';
+import 'package:my_flutter_tutorial/messages.dart';
+import 'package:my_flutter_tutorial/edit_developer.dart';
 
 class MyHomePage extends StatefulWidget {
   static const String id ='/MyHomePage';
+  static _MyHomePageState of(BuildContext context) =>
+      context.findAncestorStateOfType();
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
+  List<Widget> developerCards = <DeveloperCard>[];
   @override
   void initState() {
     super.initState();
+    developerCards = updateDeveloperCards();
+  }
+
+  void deleteWarningPopupInContext(String itemType, int index, context) {
+    deleteWarningPopup( itemType,  index, context);
+  }
+
+  void editUserStoryInContext() {
+    Navigator.pushReplacementNamed(context, MyEditDeveloperPage.id);
   }
 
   @override
@@ -32,20 +47,49 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: FlatButton(
-              color: Colors.orange,
+              color: Colors.green,
               child: Text(
-                "Second page",
+                "Utilities",
                 style: TextStyle(fontSize: 10.0),
               ),onPressed: (){
-              Navigator.pushNamedAndRemoveUntil(context, MySecondPage.id,(Route<dynamic> route) => false);
+              Route _createRoute() {
+                return PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) => MySecondPage(),
+                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                    return FadeTransition(opacity: animation, child: child);
+                  },
+                );
+              }
+              Navigator.of(context).pushAndRemoveUntil(_createRoute(),(Route<dynamic> PageRouteBuilder) => false);
+              }),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FlatButton(
+                  color: Colors.orange,
+                  child: Text(
+                    "Register Developer",
+                    style: TextStyle(fontSize: 10.0),
+                  ),onPressed: (){
+                Route _createRoute() {
+                  return PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) => MyRegisterPage(),
+                    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(opacity: animation, child: child);
+                    },
+                  );
+                }
+                Navigator.of(context).pushAndRemoveUntil(_createRoute(),(Route<dynamic> PageRouteBuilder) => false);
               }),
             ),
           ],
         ),
       ),
       body: Center(
-        child: Container(
-        )
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+          children: developerCards,
+        ),
         ),
       );
   }

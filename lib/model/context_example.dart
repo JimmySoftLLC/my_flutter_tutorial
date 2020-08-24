@@ -8,9 +8,9 @@ void updateSomeData( context) async {
   Developer myDeveloper;
   int index;
   index = myDevelopers.length-1;
-  String firstName = returnRandomString(firstNames);
-  String lastName = returnRandomString(lastNames);
-  String bio = returnRandomString(bios);
+  String firstName = returnRandomString(firstNamesData);
+  String lastName = returnRandomString(lastNamesData);
+  String bio = returnRandomString(biosData);
   myDeveloper = new Developer(firstName + '.' + lastName + '@anywhere.com', '1234', firstName, lastName, bio,index);
   myDevelopers.add(myDeveloper);
   Route _createRoute() {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_flutter_tutorial/view/home_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_flutter_tutorial/model/developer.dart';
+import 'package:my_flutter_tutorial/model/context_example.dart';
 
 class MyRegisterPage extends StatefulWidget {
   static const String id ='/MyRegisterPage';
@@ -24,7 +25,7 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
       });
     }else{
       setState(() {
-        myText = 'Registering user please wait.';
+        myText = 'Registering developer please wait.';
       });
       Developer myDeveloper;
       int index;
@@ -33,6 +34,26 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
       myDevelopers.add(myDeveloper);
       Navigator.pushReplacementNamed(context, MyHomePage.id);
     }
+  }
+
+  void hatchDeveloper() {
+    setState(() {
+      firstName = returnRandomString(firstNamesData);
+      lastName = returnRandomString(lastNamesData);
+      bio = returnRandomString(biosData);
+      email = firstName + '.' + lastName + '@anywhere.com';
+      password = firstName + '1234';
+    });
+  }
+
+  void clearDeveloper() {
+    setState(() {
+      email = '';
+      password = '';
+      firstName = '';
+      lastName = '';
+      bio = '';
+    });
   }
 
   @override
@@ -82,7 +103,7 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                 height: 24.0,
               ),
               TextField(
-                //controller: TextEditingController()..text = '',
+                controller: TextEditingController()..text = email,
                 onChanged: (value) {
                   email = value;
                 },
@@ -109,7 +130,7 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                 height: 8.0,
               ),
               TextField(
-                //controller: TextEditingController()..text = '',
+                controller: TextEditingController()..text = password,
                 onChanged: (value) {
                   password = value;
                 },
@@ -142,7 +163,7 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                   Expanded(
                     flex: 20,
                     child: TextField(
-                      //controller: TextEditingController()..text = 'flutter@anywhere.com',
+                      controller: TextEditingController()..text = firstName,
                       onChanged: (value) {
                         firstName = value;
                       },
@@ -175,7 +196,7 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                   Expanded(
                     flex: 20,
                     child: TextField(
-                      //controller: TextEditingController()..text = 'flutter@anywhere.com',
+                      controller: TextEditingController()..text = lastName,
                       onChanged: (value) {
                         lastName = value;
                       },
@@ -206,7 +227,7 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
               ),
               TextField(
                 maxLines: 4,
-                //controller: TextEditingController()..text = '',
+                controller: TextEditingController()..text = bio,
                 onChanged: (value) {
                   bio = value;
                 },
@@ -231,6 +252,40 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
               ),
               SizedBox(
                 height: 24.0,
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                child: Material(
+                  color: accentColor,
+                  borderRadius: BorderRadius.all(Radius.circular(myRadius)),
+                  elevation: 5.0,
+                  child: MaterialButton(
+                    onPressed: () {
+                      hatchDeveloper();
+                    },
+                    height: 42.0,
+                    child: Text(
+                      'Hatch',
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                child: Material(
+                  color: accentColor,
+                  borderRadius: BorderRadius.all(Radius.circular(myRadius)),
+                  elevation: 5.0,
+                  child: MaterialButton(
+                    onPressed: () {
+                      clearDeveloper();
+                    },
+                    height: 42.0,
+                    child: Text(
+                      'Clear',
+                    ),
+                  ),
+                ),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 16.0),

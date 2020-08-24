@@ -19,9 +19,9 @@ class Developer {
 var myDevelopers =[];
 int myLastSelectedDeveloper;
 
-var firstNames = ["Jim","Jill","Tim","Dan","Sally","Jackie","Sam","Joe","George","Zac","Mary","Julie","Erica","Shelly","Ruth","Isabella","Amelia","Olivia","Harper","Noah","Liam","Eric","Troy","Elijah","Lucas","Jackson","Matthew","Sebastian","Wyatt","Owen"];
-var lastNames = ["Smith","Johnson","Williams","Garcia","Miller","Gonzalez","Lopez","Moore","Thompson","Lewis","Wright","King","Baker","Mitchell","Flores","Allen","Roberts","Bailey","Sanchez","Cohen","Beckett","Goldstien","Channing","Dixon","Easton","Gibbs","Griffin","Hendrix","Hutton","Lennon"];
-var bios = ["Lead programmer with a track record of incorporating user and business requirements into cost-effective, secure and user-friendly solutions known for scalability and durability.",
+var firstNamesData = ["Jim","Jill","Tim","Dan","Sally","Jackie","Sam","Joe","George","Zac","Mary","Julie","Erica","Shelly","Ruth","Isabella","Amelia","Olivia","Harper","Noah","Liam","Eric","Troy","Elijah","Lucas","Jackson","Matthew","Sebastian","Wyatt","Owen"];
+var lastNamesData = ["Smith","Johnson","Williams","Garcia","Miller","Gonzalez","Lopez","Moore","Thompson","Lewis","Wright","King","Baker","Mitchell","Flores","Allen","Roberts","Bailey","Sanchez","Cohen","Beckett","Goldstien","Channing","Dixon","Easton","Gibbs","Griffin","Hendrix","Hutton","Lennon"];
+var biosData = ["Lead programmer with a track record of incorporating user and business requirements into cost-effective, secure and user-friendly solutions known for scalability and durability.",
   "Experience designing, developing, deploying and maintaining large scale software and distributed systems, utilizing various AWS tools and services.",
   "Software Engineer with an interest in making a difference in the technological field. Tech stack includes Java, JavaScript, C++, PHP, Python, React and Angular",
   "I care about creating value and learning. I like to help my organization get better at translating effort into customer value.",

@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_flutter_tutorial/model/developer.dart';
 import 'package:my_flutter_tutorial/view/home_page.dart';
 
-const double developerCardHeight = 150;
+const double developerCardHeight = 110;
 
 List<DeveloperCard> updateDeveloperCards() {
   List<Widget> developerCards = <DeveloperCard>[];
@@ -77,6 +77,8 @@ class _DeveloperCardState extends State<DeveloperCard> {
                   ),
                   Text(
                     _bio,
+//                    maxLines: 3,
+//                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),

@@ -58,7 +58,7 @@ class _MySecondPageState extends State<MySecondPage> {
                 child: FlatButton(
                     color: Colors.orange,
                     child: Text(
-                      "Create random developer",
+                      "Create developer",
                       style: TextStyle(fontSize: 10.0),
                     ),onPressed: (){
                   updateSomeData(context);

@@ -1,6 +1,6 @@
 # my_flutter_tutorial
 
-This flutter application was started with a new flutter project and then added to to demonstrate routing, widgets, hot reload, context, state, plugins and custom widgets.  It is the project that is discussed in my tutorial at https://www.mysoftwarejourney.com/2020/08/22/customizing-flutters-demo-app/
+This flutter application was started with a new flutter project and then modified to demonstrate routing, widgets, hot reload, context, state, plugins and custom widgets.  It is the project that is discussed in my tutorial at https://www.mysoftwarejourney.com/2020/08/22/customizing-flutters-demo-app/
 
 ## Create an app
 
